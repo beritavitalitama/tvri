@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita TVRI - Televisi Republik Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0054A6; /* Biru TVRI */
+            --secondary: #E30613; /* Merah TVRI */
+            --accent: #FFCC00; /* Kuning TVRI */
+            --dark: #1A1A1A;
+            --light: #F5F5F5;
+            --gray: #666;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c10510;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(227, 6, 19, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), #0077CC);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-bottom {
+            padding-top: 15px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            padding: 5px;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .live-badge {
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .live-badge i {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a.active {
+            color: var(--accent);
+        }
+        
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        /* Breaking News */
+        .breaking-news {
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .breaking-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .breaking-label {
+            background-color: var(--dark);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 3px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .hero-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .live-stream {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stream-header {
+            background-color: var(--primary);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stream-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .stream-placeholder {
+            height: 250px;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .stream-placeholder i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .play-btn:hover {
+            background-color: #c10510;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title h2 i {
+            color: var(--secondary);
+        }
+        
+        .view-all {
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .view-all:hover {
+            color: var(--secondary);
+        }
+        
+        /* Berita Section */
+        .berita-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .berita-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .berita-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .berita-card.featured {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .berita-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .featured .berita-image {
+            height: 100%;
+        }
+        
+        .berita-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .berita-card:hover .berita-image img {
+            transform: scale(1.1);
+        }
+        
+        .berita-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .berita-content {
+            padding: 20px;
+        }
+        
+        .featured .berita-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .berita-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .featured .berita-title {
+            font-size: 1.6rem;
+        }
+        
+        .berita-excerpt {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .berita-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        /* Program Section */
+        .program-section {
+            margin-bottom: 60px;
+        }
+        
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .program-image {
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .program-content {
+            padding: 15px;
+        }
+        
+        .program-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .program-schedule {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        .footer-logo {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .berita-card.featured {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+            
+            .featured .berita-image {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .berita-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 30px;
+                right: 20px;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .program-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.6rem;
+            }
+            
+            .berita-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Logo_TVRI_%282020%29.svg/1200px-Logo_TVRI_%282020%29.svg.png" alt="Logo TVRI">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Berita TVRI</h1>
+                        <p>Televisi Republik Indonesia - Media Penyiaran Publik</p>
+                    </div>
+                </div>
+                
+                <div class="live-badge">
+                    <i class="fas fa-circle"></i> LIVE NOW
+                </div>
+            </div>
+            
+            <div class="header-bottom">
+                <nav class="nav-menu" id="navMenu">
+                    <ul>
+                        <li><a href="#berita" class="active">Berita Utama</a></li>
+                        <li><a href="#program">Program TV</a></li>
+                        <li><a href="#live">Siaran Langsung</a></li>
+                        <li><a href="#regional">Berita Regional</a></li>
+                        <li><a href="#tentang">Tentang TVRI</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breaking News -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="breaking-content">
+                <div class="breaking-label">
+                    <i class="fas fa-bullhorn"></i> BREAKING NEWS
+                </div>
+                <div class="marquee-container">
+                    <div class="marquee">
+                        <strong>PILPRES 2024:</strong> KPU umumkan hasil penghitungan suara nasional - Menteri PUPR resmikan Jalan Tol Trans Jawa ruas Cikampek-Palimanan - Harga BBM turun mulai besok pagi - Gempa 5.2 SR guncang Sulawesi Tengah, tidak berpotensi tsunami.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Informasi Terpercaya untuk Seluruh Rakyat Indonesia</h2>
+                    <p>Sebagai media penyiaran publik, TVRI menghadirkan berita yang akurat, berimbang, dan bertanggung jawab untuk seluruh masyarakat Indonesia. Dari Sabang sampai Merauke.</p>
+                    <div class="hero-buttons">
+                        <a href="#live" class="btn btn-primary">
+                            <i class="fas fa-tv"></i> Tonton Siaran Langsung
+                        </a>
+                        <a href="#berita" class="btn btn-outline">
+                            <i class="fas fa-newspaper"></i> Baca Berita Terbaru
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="live-stream">
+                    <div class="stream-header">
+                        <div class="stream-title">
+                            <i class="fas fa-satellite-dish"></i> TVRI NASIONAL - Siaran Langsung
+                        </div>
+                        <div class="live-badge">
+                            <i class="fas fa-circle"></i> LIVE
+                        </div>
+                    </div>
+                    <div class="stream-placeholder">
+                        <i class="fas fa-tv"></i>
+                        <p>Siaran Langsung TVRI Nasional</p>
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Berita Utama Section -->
+            <section id="berita">
+                <div class="section-title">
+                    <h2><i class="fas fa-newspaper"></i> Berita Utama</h2>
+                    <a href="#" class="view-all">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="berita-grid">
+                    <!-- Berita Featured -->
+                    <article class="berita-card featured">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pilpres 2024">
+                            <div class="berita-tag">POLITIK</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">Hasil Quick Count Pilpres 2024: Paslon Nomor 2 Unggul Tipis</h3>
+                            <p class="berita-excerpt">Beberapa lembaga survei merilis hasil quick count Pilpres 2024 menunjukkan persaingan ketat antara kedua paslon. Paslon nomor 2 unggul tipis dengan selisih 1-2% berdasarkan data sementara.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 14 Februari 2024</span>
+                                <span><i class="far fa-clock"></i> 15:30 WIB</span>
+                                <span><i class="far fa-eye"></i> 25.4k dilihat</span>
+                            </div>
+                            <a href="#" class="btn btn-primary" style="margin-top: 15px; align-self: flex-start;">Baca Selengkapnya</a>
+                        </div>
+                    </article>
+                    
+                    <!-- Berita 2 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Teknologi Indonesia">
+                            <div class="berita-tag">TEKNOLOGI</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">Satelit Merah Putih 2 Sukses Diluncurkan, Tingkatkan Konektivitas di Daerah 3T</h3>
+                            <p class="berita-excerpt">Satelit komunikasi Merah Putih 2 berhasil diluncurkan dari Cape Canaveral, Florida. Satelit ini akan meningkatkan konektivitas internet di daerah tertinggal, terdepan, dan terluar (3T).</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 13 Februari 2024</span>
+                                <span><i class="far fa-eye"></i> 18.7k dilihat</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Berita 3 -->
+                    <article class="berita-card">
+                        <div class="berita-image">
+                            <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ekonomi Indonesia">
+                            <div class="berita-tag">EKONOMI</div>
+                        </div>
+                        <div class="berita-content">
+                            <h3 class="berita-title">Pertumbuhan Ekonomi Indonesia Kuartal IV 2023 Capai 5.2%, Tertinggi di ASEAN</h3>
+                            <p class="berita-excerpt">BPS mencatat pertumbuhan ekonomi Indonesia pada kuartal IV 2023 mencapai 5.2%, tertinggi di antara negara-negara ASEAN. Konsumsi rumah tangga dan investasi menjadi penyumbang utama.</p>
+                            <div class="berita-meta">
+                                <span><i class="far fa-calendar"></i> 12 Februari 2024</span>
+                                <span><i class="far fa-eye"></i> 22.1k dilihat</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- Program TV Section -->
+            <section id="program" class="program-section">
+                <div class="section-title">
+                    <h2><i class="fas fa-tv"></i> Program TV Hari Ini</h2>
+                    <a href="#" class="view-all">Jadwal Lengkap <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="program-grid">
+                    <!-- Program 1 -->
+                    <div class="program-card">
+                        <div class="program-image">
+                            <img src="https://images.unsplash.com/photo-1584905066893-7d5c142ba4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dunia dalam Berita">
+                        </div>
+                        <div class="program-content">
+                            <h3 class="program-title">Dunia dalam Berita</h3>
+                            <p>Berita internasional terkini dari seluruh penjuru dunia.</p>
+                            <div class="program-schedule">
+                                <span><i class="far fa-clock"></i> 18:00 WIB</span>
+                                <span>TVRI Nasional</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Program 2 -->
+                    <div class="program-card">
+                        <div class="program-image">
+                            <img src="https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jendela Indonesia">
+                        </div>
+                        <div class="program-content">
+                            <h3 class="program-title">Jendela Indonesia</h3>
+                            <p>Menampilkan kekayaan alam, budaya, dan pariwisata Indonesia.</p>
+                            <div class="program-schedule">
+                                <span><i class="far fa-clock"></i> 19:30 WIB</span>
+                                <span>TVRI Nasional</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Program 3 -->
+                    <div class="program-card">
+                        <div class="program-image">
+                            <img src="https://images.unsplash.com/photo-1551818255-e6e109ecb622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ada Apa dengan Cinta?">
+                        </div>
+                        <div class="program-content">
+                            <h3 class="program-title">Ada Apa dengan Cinta?</h3>
+                            <p>Drama series inspiratif tentang kehidupan remaja Indonesia.</p>
+                            <div class="program-schedule">
+                                <span><i class="far fa-clock"></i> 20:30 WIB</span>
+                                <span>TVRI Nasional</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Program 4 -->
+                    <div class="program-card">
+                        <div class="program-image">
+                            <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bincang Malam">
+                        </div>
+                        <div class="program-content">
+                            <h3 class="program-title">Bincang Malam</h3>
+                            <p>Talk show interaktif membahas isu-isu terkini dengan narasumber ahli.</p>
+                            <div class="program-schedule">
+                                <span><i class="far fa-clock"></i> 21:30 WIB</span>
+                                <span>TVRI Nasional</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Tentang TVRI -->
+                <div class="footer-section" id="tentang">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Logo_TVRI_%282020%29.svg/200px-Logo_TVRI_%282020%29.svg.png" alt="Logo TVRI" class="footer-logo">
+                    <h3>Tentang TVRI</h3>
+                    <p>Televisi Republik Indonesia (TVRI) adalah lembaga penyiaran publik Indonesia yang didirikan pada 24 Agustus 1962. TVRI hadir untuk memberikan informasi, pendidikan, dan hiburan yang sehat bagi seluruh masyarakat Indonesia.</p>
+                    <p>Sebagai media publik, TVRI berkomitmen menyajikan konten yang berkualitas, berimbang, dan mendidik.</p>
+                </div>
+                
+                <!-- Kontak -->
+                <div class="footer-section">
+                    <h3>Kontak & Alamat</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Gedung TVRI, Jl. Gerbang Pemuda, Senayan, Jakarta 10270</p>
+                    <p><i class="fas fa-phone"></i> (021) 5733010</p>
+                    <p><i class="fas fa-envelope"></i> redaksi@tvri.go.id</p>
+                    <p><i class="fas fa-globe"></i> www.tvri.go.id</p>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Link Cepat -->
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <a href="#berita">Berita Utama</a>
+                    <a href="#program">Program TV</a>
+                    <a href="#live">Siaran Langsung</a>
+                    <a href="#regional">Berita Regional</a>
+                    <a href="#tentang">Sejarah TVRI</a>
+                    <a href="#kontak">Kontak Kami</a>
+                    <a href="#">Lowongan Kerja</a>
+                    <a href="#">Panduan Program</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Televisi Republik Indonesia (TVRI). Semua Hak Dilindungi.</p>
+                <p>Siaran TVRI dapat diterima secara gratis melalui televisi digital terrestrial, satelit, dan streaming online.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                
+                // Update active menu
+                navLinks.forEach(item => item.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+        
+        // Play button functionality
+        const playBtn = document.querySelector('.play-btn');
+        const streamPlaceholder = document.querySelector('.stream-placeholder');
+        
+        playBtn.addEventListener('click', () => {
+            streamPlaceholder.innerHTML = `
+                <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#000; color:white;">
+                    <i class="fas fa-satellite-dish" style="font-size:3rem; margin-bottom:15px; color:var(--primary)"></i>
+                    <p>Memuat siaran langsung TVRI Nasional...</p>
+                    <div style="margin-top:20px; width:80%; height:4px; background:#333; border-radius:2px; overflow:hidden;">
+                        <div style="width:30%; height:100%; background:var(--secondary); animation:loading 2s infinite;"></div>
+                    </div>
+                </div>
+            `;
+            
+            // Simulate loading then show "live stream"
+            setTimeout(() => {
+                streamPlaceholder.innerHTML = `
+                    <div style="width:100%; height:100%; position:relative; background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center;">
+                        <div style="text-align:center; color:white; padding:20px;">
+                            <div style="background:var(--secondary); color:white; padding:5px 15px; border-radius:20px; display:inline-flex; align-items:center; gap:8px; margin-bottom:20px; font-weight:bold;">
+                                <i class="fas fa-circle"></i> LIVE NOW
+                            </div>
+                            <h3 style="margin-bottom:10px;">TVRI NASIONAL</h3>
+                            <p>Siaran langsung sedang berlangsung</p>
+                            <div style="margin-top:20px; display:flex; align-items:center; justify-content:center; gap:10px;">
+                                <button style="background:var(--secondary); color:white; border:none; padding:8px 20px; border-radius:5px; cursor:pointer;">
+                                    <i class="fas fa-volume-up"></i> Suara
+                                </button>
+                                <button style="background:rgba(255,255,255,0.2); color:white; border:none; padding:8px 20px; border-radius:5px; cursor:pointer;">
+                                    <i class="fas fa-expand"></i> Fullscreen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }, 2000);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
